@@ -26,11 +26,28 @@ def read_data(file_name):
 
 
 def selection_sort(number_list):
-    
+    idx0 = 0
+    for n in range(len(number_list)):
+        smallest = number_list[idx0]
+        idx = idx0
+        for number in number_list[idx0:]:
+            if smallest >= number:
+                smallest = number
+                idx_smallest = idx
+            idx = idx + 1
+        number_list[idx0], number_list[idx_smallest] = number_list[idx_smallest], number_list[idx0]
+        idx0 = idx0 + 1
+
+    return number_list
+
+
+
 
 def main():
-    read_data("numbers.csv")
-
+    data = read_data("numbers.csv")
+    for value in data.values():
+        value = selection_sort(value)
+    print(data)
 
 if __name__ == '__main__':
     main()
