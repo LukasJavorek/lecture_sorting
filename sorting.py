@@ -1,5 +1,5 @@
-import os
 import csv
+import os
 
 
 def read_data(file_name):
@@ -26,6 +26,11 @@ def read_data(file_name):
 
 
 def selection_sort(number_list, direction=0):
+    """
+    :param number_list: neuspořádaný seznam čísel
+    :param direction: 0 = vzestupně, 1 = sestupně
+    :return: uspořádaný seznam čísel podle direction
+    """
     idx0 = 0
     for n in range(len(number_list)):
         smallest = number_list[idx0]
@@ -44,12 +49,36 @@ def selection_sort(number_list, direction=0):
     return number_list
 
 
+def bubble_sort(number_list):
+    for i in range(len(number_list)):
+        previous_number = number_list[0]
+        idx = 0
+        for number in number_list[:len(number_list)]:
+            if previous_number > number:
+                number_list[idx - 1], number_list[idx] = number_list[idx], number_list[idx - 1]
+            previous_number = number
+            idx = idx + 1
+    return number_list
+
+
+def insertion_sort(number_list):
+    
 def main():
-    direction = 0
+    direction = 0       # 0 = vzestupně, 1 = sestupně
     data = read_data("numbers.csv")
     for value in data.values():
-        value = selection_sort(value, direction)
+        value = bubble_sort(value)
     print(data)
+
 
 if __name__ == '__main__':
     main()
+# jiná implementace selection sort
+# def selection_sort(number_list, direction=0):
+#     for i in range(len(number_list)):
+#         min_idx = 0
+#         for num_idx in range(1, len(number_list)):
+#             if number_list[min_idx] > number_list[num_idx]:
+#                 min_idx = num_idx
+#         number_list[0], number_list[min_idx] = number_list[min_idx], number_list[0]
+#     return number_list
